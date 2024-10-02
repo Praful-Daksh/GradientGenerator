@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="head">
+        <h1>Gradient Generator</h1>
+        <p>Beyond your Limits.</p>
+    </div>
+    <div class="generator">
+        <div class="tools">
+            <div class="color1">
+                <label>Color: </label>
+                <input type="color" id="clr1" value="#007A00">
+            </div>
+            <div class="color2">
+                <label></label><br>
+                <input type="color" id="clr2" value="#000000">
+            </div>
+            <div class="angle">
+                <label>Angle: </label>
+                <select id="angle">
+                    <option value="0deg">0 deg</option>
+                    <option value="45deg">45 deg</option>
+                    <option value="90deg">90d eg</option>
+                    <option value="180deg">180 deg</option>
+                    <option value="240deg">240 deg</option>
+                    <option value="360deg">360 deg</option>
+                </select>
+            </div>
+            <div class="type">
+                <label>Type: </label>
+                <select id="type">
+                    <option value="Linear-gradient">Linear</option>
+                    <option value="Radial-gradient"> Radial</option>
+                </select>
+            </div>
+            <div class="gen-btn">
+                <button id="gen-btn">Generate</button>
+            </div>
+            <div class="random">
+                <button id="random-btn">Random</button>
+            </div>
+        </div>
+        <div class="preview" id="preview">
+
+        </div>
+    </div>
+    <script>
+        const gradients = [
+            "linear-gradient(45deg, #ff7e5f, #feb47b)",
+            "linear-gradient(90deg, #6a11cb, #2575fc)",
+            "linear-gradient(135deg, #ff4b1f, #1fddff)",
+            "linear-gradient(180deg, #00f260, #0575e6)",
+            "linear-gradient(225deg, #f85032, #e73827)",
+            "linear-gradient(270deg, #30cfd0, #330867)",
+            "linear-gradient(315deg, #00c6ff, #0072ff)",
+            "linear-gradient(360deg, #fc00ff, #00dbde)",
+            "linear-gradient(75deg, #ee9ca7, #ffdde1)",
+            "linear-gradient(120deg, #2c3e50, #fd746c)",
+            "radial-gradient(circle, #ff9966, #ff5e62)",
+            "radial-gradient(circle, #6dd5ed, #2193b0)",
+            "radial-gradient(circle, #ff512f, #dd2476)",
+            "radial-gradient(circle, #a8ff78, #78ffd6)",
+            "radial-gradient(circle, #fa709a, #fee140)",
+            "radial-gradient(circle, #ff9a9e, #fad0c4)",
+            "radial-gradient(circle, #89f7fe, #66a6ff)",
+            "radial-gradient(circle, #a18cd1, #fbc2eb)",
+            "radial-gradient(circle, #cfd9df, #e2ebf0)",
+            "radial-gradient(circle, #bdc3c7, #2c3e50)",
+            "linear-gradient(45deg, #12c2e9, #c471ed)",
+            "linear-gradient(90deg, #f7797d, #FBD786)",
+            "linear-gradient(135deg, #4facfe, #00f2fe)",
+            "radial-gradient(circle, #74ebd5, #ACB6E5)",
+            "radial-gradient(circle, #EECDA3, #EF629F)"
+        ];
+
+
+
+        var generate = document.getElementById('gen-btn');
+        var view = document.getElementById('preview');
+        generate.addEventListener('click', () => {
+            let type = document.getElementById('type').value;
+            let color1 = document.getElementById('clr1').value;
+            let color2 = document.getElementById('clr2').value;
+            let angle = document.getElementById('angle').value;
+            if (type == 'Linear-gradient')
+                view.style.background = `${type}(${angle},${color1},${color2})`;
+            else
+                view.style.background = `${type}(${color1},${color2})`;
+
+        });
+
+        document.getElementById('random-btn').addEventListener('click', () => {
+            view.style.background = gradients[Math.floor(Math.random() * gradients.length)];
+        });
+    </script>
+</body>
+
+</html>
